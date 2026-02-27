@@ -15,6 +15,11 @@ mongoose.connect(process.env.MONGO_URI)
 app.get("/", (req, res) => {
   res.send("Dialysis API Running");
 });
+const patientRoutes = require("./routes/patientRoutes");
+app.use("/patients", patientRoutes);
+
+const sessionRoutes = require("./routes/sessionRoutes");
+app.use("/sessions", sessionRoutes);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
